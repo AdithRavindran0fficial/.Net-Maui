@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TodoApp.MainPage"
+             xmlns:viewmodel="clr-namespace:TodoApp.ViewModel"
+             x:DataType="viewmodel:TodoViewModel"
+             Title="Todo App">
+
+    <StackLayout>
+        <StackLayout>
+            <Border StrokeThickness="2">
+
+            <Entry Placeholder="Enter your Task" HeightRequest="100" FontSize="Medium" Text="{Binding Text}" />
+            </Border>
+        </StackLayout>
+        <Button Text="Save" BackgroundColor="Black" HorizontalOptions="Start" WidthRequest="100" Margin="0,10,0,0" Command="{Binding Add}"/>
+    <Grid >
+        <CollectionView ItemsSource="{Binding todos}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                        <StackLayout Padding="20">
+                            <Border StrokeThickness="2">
+                            <HorizontalStackLayout>
+                            <Label Text="{Binding}" Margin="10,10,0,10"/>
+                                    <Button WidthRequest="100" Text="Delete" Margin="900,0,0,0" Background="Black" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:TodoViewModel}},Path=Delete}" CommandParameter="{Binding}"/>
+                                </HorizontalStackLayout>
+                            </Border>
+                            
+
+                        </StackLayout>
+
+
+
+                    </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+
+
+
+    </StackLayout>
+</ContentPage>
